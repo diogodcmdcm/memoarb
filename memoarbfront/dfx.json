@@ -1,0 +1,26 @@
+{
+  "canisters": {
+    "memoarbfront_backend": {
+      "main": "src/memoarbfront_backend/main.mo",
+      "type": "motoko"
+    },
+    "memoarbfront_frontend": {
+      "dependencies": [
+        "memoarbfront_backend"
+      ],
+      "source": [
+        "src/memoarbfront_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "memoarbfront_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}

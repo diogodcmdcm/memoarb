@@ -1,0 +1,54 @@
+type Collection = record {
+  dateCreate : nat;
+  supply_cap : opt nat;
+  name : text;
+  description : opt text;
+  image : opt text;
+  location : text;
+  total_supply : nat;
+  symbol : text;
+};
+type Main = service {
+  claimNFTCollection : (principal, text, nat) -> ();
+  createTemplateNFtToMint : (text, text, text, text, nat, nat) -> ();
+  criar_colecao : (text, text, text, bool, text, nat, text) -> ();
+  getAllCollectionsPage : (nat, nat) -> (vec Collection);
+  getAllCollectionsPageUser : (nat, nat) -> (vec Collection);
+  getNft : (text, nat) -> (vec opt vec text);
+  getNftTemplate : (text, nat) -> ();
+  getTotalRegCollections : () -> (nat);
+  getTotalRegCollectionsUser : () -> (nat);
+  get_collection_by_symbol : (text) -> (Collection);
+  get_collection_by_symbol_user : (text) -> (Collection);
+  get_collection_claims_user : (text, nat, nat) -> (vec Nft_Memo);
+  get_collection_mints : (text) -> (vec Nft_Memo);
+  get_collection_nft_template : (text) -> (vec NftCollectionTemplate);
+  get_collection_user_claim : () -> (vec record { text; vec text });
+  icrc7_total_supply : () -> (nat);
+  incrementTotalSupplyNFT : (text, nat) -> ();
+  loginAdmin : (text, text) -> (bool);
+  mintAndClaimNFTTemplate : (text, nat, text) -> (nat);
+  mintNFTCollection : (text, text, text, text, text) -> (nat);
+  retornar_todas_colecoes : () -> (vec record { text; Collection });
+  retornar_todas_colecoes_usuario : () -> (vec Collection);
+  validateMintAndClaimNFTDuplicate : (text, text) -> (bool);
+};
+type NftCollectionTemplate = record {
+  id : nat;
+  repeatMint : bool;
+  memo : blob;
+  name : text;
+  override : bool;
+  description : text;
+  supplyCap : nat;
+  totalSupply : nat;
+  image : text;
+  creationDateTemplateNFT : nat;
+};
+type Nft_Memo = record {
+  name : text;
+  description : text;
+  image : text;
+  id_nft : nat;
+};
+service : Main
